@@ -316,6 +316,37 @@ for i in json.load(sys.stdin):
 
 ## 5. Bulk Operations
 
+### Bulk writes: verify every item, never trust the loop
+
+A loop over N mutations reports success if you read only its exit code. Two
+distinct failures hide there, and both need the same defence: **issue each
+mutation separately, then re-read every item's state with a fresh call.**
+
+```bash
+for n in $LIST; do gh issue close "$n" --repo <o>/<r> >/dev/null || echo "FAILED close $n"; done
+for n in $LIST; do gh issue view "$n" --repo <o>/<r> --json state -q .state; done   # the real check
+```
+
+Pitfalls that produce a silently incomplete batch:
+
+- **Never pipe a mutation through `| tail -1`.** The error text is not the last
+  line, so the failure is discarded and the loop reports a clean run. Redirect to
+  a file and echo the exit status instead.
+- **`gh issue close --comment-file` does not exist**; the flag is not recognised
+  there and the comment is dropped while the issue still closes. Post the comment
+  as its own command with `--body-file`, then close separately.
+- **Commenting and closing have different permission requirements.** A token with
+  repo scope can often comment on an issue it cannot close (one authored by
+  someone else, where the token lacks admin rights). The comment then succeeds
+  while the state change fails — split them and check both.
+- **A first-try command must never carry a live payload.** Probing a syntax
+  question with `--comment "test"` posts that string to a real issue and it stays
+  in the thread permanently. Probe with `--help` or against a scratch draft, never
+  by publishing a placeholder you would then have to correct in public.
+- **Report the partial result.** When some items cannot be mutated, say which,
+  why, and give the user the exact command to finish them. A batch reported as
+  complete when two items failed is worse than one honestly reported as partial.
+
 For batch operations, combine API calls with shell scripting:
 
 **With gh:**

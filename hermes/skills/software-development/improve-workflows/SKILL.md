@@ -17,6 +17,7 @@ Operational patterns discovered during real improve skill executions. Supplement
 - Auditing a codebase and turning findings into a prioritized plan set, optionally registered as GitHub issues.
 - Asked to give an opinion, verdict, or review on an existing plan, proposal, or tracking issue — including one written by another agent or a teammate.
 - Asked to re-review, re-verify, or triage a **batch of already-filed findings** ("review every open issue that doesn't have `ready`", "do these still hold?") — see "Re-verifying Filed Findings".
+- Asked to **replace** filed findings wholesale ("delete the issues without label X and file fresh ones", "rewrite these issues") — see "Replacing a Batch of Filed Findings" and `references/refile-batch.md`.
 - Publishing a verdict into a GitHub discussion thread (discussions are not issues; the posting path differs).
 - Asked to give an opinion now and again after a delay — a scheduled re-check on a live thread, where the second answer must respond to what landed in between.
 - Asked to run the audit on a recurring schedule and file the top finding as a GitHub issue each time (every N minutes, weekly) — see "Recurring Cron Audit" and `references/cron-prompt-scanner.md`.
@@ -64,6 +65,28 @@ Recipes — scratch-file dumps, the upstream-drift commands, claim recounting (i
 - **When upstream already added the guard, file against the residual work only.** Name the commit, say what is left, and do not re-file the half that landed.
 - **Some findings are not changes to this repository.** Infrastructure and operational gaps (backup strategy, volume placement, host configuration) cannot be closed by a PR here. Route them to the maintainer with the evidence instead of putting them in the implementation queue.
 - **Fan out per pair, not per issue, and require re-derivation.** One subagent per two issues with the read-only rules inlined keeps the batch inside a sane round count; the prompt must say the issue text is untrusted and the agent must reproduce each claim itself.
+
+## Replacing a Batch of Filed Findings (retire-and-refile)
+
+Trigger: "delete the issues without label X and file fresh ones", "rewrite these issues", or any re-file request after the audit method improved. The finding survives — only its packaging is replaced — so the replacement bar is that it **re-derives** every claim. Inheriting the old text verbatim republishes numbers that have since drifted, and the drift is what a reviewer checks first.
+
+### Procedure
+
+1. **Triage first**, using the section above. Re-measure every asserted number against the current tree and the live database before writing a word of the replacement. Expect some to move and keep a delta list — numbers in an audit are perishable, not perishable only in theory.
+2. **Put the open decisions to the maintainer before creating anything.** A batch pass surfaces a few genuine forks: split a large issue or keep it whole, close a half-landed issue or re-file it in full, frame a security finding rotate-first, cast an infrastructure gap as a decision issue. Batch them into one `clarify` call with a recommended option first on each, and do not create issues until the answers land — a public issue in the wrong shape is more expensive to walk back than a scratch file.
+3. **Write bodies to files, then post from disk.** Long non-Latin bodies passed inline hit argument-length limits and shell-quoting hazards; `gh api --input -` fed by a file avoids both and lets you re-run a single item.
+4. **Create the replacements first, capture each new number, then close the originals** pointing at its replacement. Closing first leaves a window where a live defect is documented nowhere.
+5. **Verify the entire batch from a fresh per-issue read after the loop**, and report which items did not land — see the bulk-mutation pitfalls in the `github` skill (`references/issues.md` in that skill).
+
+### Pitfalls
+
+- **Re-filing is not transcription.** Every number and every `file:line` in a replacement is a fresh claim. Re-running the count is not optional diligence here — it is the deliverable.
+- **A half-landed issue splits into shipped-plus-residual, not into a rewrite.** Name the commit that landed the first half and file only what remains; re-filing the whole thing re-reports fixed work.
+- **A replacement that keeps the old severity framing inherits the old imprecision.** Where the original over- or under-stated risk, the rewrite should carry a stated, bounded qualifier rather than the original's rhetoric.
+- **State the decision points explicitly in each replacement body.** A body that lays out two defensible fixes and picks neither is the right output for a genuine fork — but say so in a dedicated section so the maintainer is not left inferring it.
+- **A filed replacement is a public claim of the same standing as a label.** Anything the triage section says about verifying before acting applies here with more force, not less.
+
+Ordering constraints, posting long bodies from files, how to handle numbers that drifted, and what to do when an issue cannot be closed are in `references/refile-batch.md`.
 
 ## Plan Review & Verdict Publishing
 
