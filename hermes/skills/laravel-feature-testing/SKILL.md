@@ -47,6 +47,10 @@ document.
    it surfaces as a *subset* of tests failing with `does not exist` while the rest
    pass, which reads exactly like an infrastructure hiccup and invites a pointless
    re-run. Verify presence once, then the suite's results mean what they say.
+   Create it through PDO using the credentials already in the project's env file
+   when the `psql` CLI would otherwise demand an interactive password:
+   `new PDO('pgsql:host=…;dbname=postgres', $user, $pass)` then
+   `CREATE DATABASE "<name>" OWNER "<user>"`.
 2. **Two tiers, both green.** The framework suite (fast, full) and the browser spec
    suite (slower, environment-swapping) exercise different layers; a feature is not
    done on one tier. Report both with their pass counts.
@@ -172,6 +176,14 @@ document.
   admins out of unrelated sections. Use `givePermissionTo` for a targeted grant
   and reserve `syncPermissions` for the seeder that deliberately owns the role's
   entire set.
+- **Pest spreads an associative dataset row as NAMED arguments, and `class` is a
+  reserved word.** `dataset('k', ['a' => ['component' => 'x', 'class' => Foo::class]])`
+  fails with `Unknown named parameter $component` — or cannot be destructured at
+  all — because Pest spreads the row's keys as argument names. Wrap each row in
+  a one-element list to pass one positional array:
+  `['a' => [['component' => 'x', 'model' => Foo::class]]]`, then
+  `function (array $lookup)` in the test. Keeping every row's shape identical
+  also keeps every closure signature identical.
 - **Pest `--filter` needs the method name.** A humanized name containing spaces
   (`--filter "filter unit applies"`) prints `INFO No tests found.` and exits 0 —
   a silent no-op that reads as a green run. Use `--filter=test_filter_unit_applies`.
@@ -225,6 +237,41 @@ document.
   with the app; a vendored lib is frequently absent from `package.json` entirely, so
   the manifest cannot confirm it. Pin the version in the review so the reader knows
   which semantics you checked.
+- **A route gate on a Livewire page is not a gate on its buttons.** Route
+  middleware runs on the page load only; follow-up actions post to
+  `/livewire/update`, a different route, so a revoked holder keeps full CRUD on
+  an open tab. Any mutator that writes must re-authorize as its first statement
+  — and `catch (\Exception $e)` around a delete swallows that 403 into a friendly
+  toast unless a specific `AuthorizationException` re-throw clause precedes it.
+  Spatie returns `false` (not an exception) for an unknown permission name, so a
+  typo in `authorize('…')` fails closed: every negative test passes while the
+  page is locked for legitimate holders. Always pair the negatives with positive
+  tests and a static permission-name sweep. Full recipe in
+  `references/livewire-mutator-authorization.md`.
+- **A batch patch applied to sibling files reports success per file while
+  writing the same broken text into all of them.** One templating mistake —
+  notably a `{{` that only escapes inside a Python f-string prefix, not in the
+  plain second segment of a `+` concatenation — replicated across N components
+  is N identical parse errors discovered late. Run a syntax check over *every*
+  file in the batch, not the first one.
+- **A tracked env file with a blank `APP_KEY` makes every test that renders a
+  view fail identically, and the failures name encryption rather than the key.**
+  Repositories that guard against leaking a real key blank it in the tracked env
+  files and generate one in CI; locally you get `MissingAppKeyException` /
+  `ViewException: No application encryption key has been specified` on every
+  test that boots a session, while pure static-scan tests still pass. Read the
+  tracked file's key length rather than guessing from the failure, and export the
+  key from the gitignored working env file for the session instead of writing a
+  real key back into a tracked file — a guard job in CI fails the build on exactly
+  that. `export APP_KEY=$(grep '^APP_KEY=' .env | cut -d= -f2-)`.
+  **And the repo's own test script writes it back for you.** Projects that solve
+  this with a generate-if-blank helper call it from the `composer test` script, so
+  every gate run re-dirties the tracked file and it sits in `git status` looking
+  like part of your change. It is a master secret — it encrypts session payloads
+  and signs the cookie MAC. Re-check `git status` immediately before staging,
+  restore it (`git checkout -- <tracked env file>`), and stage **explicit paths**,
+  never `git add -A`. Stage first, then read the staged diff's file list: a
+  secret is invisible in `git status` output you skimmed.
 - **View/config caches hide fixes.** After touching routes, config, or Blade, a
   stale cached view or route can make a passing change fail with a bogus error —
   `php artisan view:clear` / `route:clear` / `config:clear` before re-running.
@@ -239,6 +286,11 @@ document.
 - `references/red-test-attribution.md` — the ordered probes for deciding whether a
   red run is yours, self-inflicted contention, or a pre-existing infrastructure bug,
   plus how to read a failing CI job.
+- `references/livewire-mutator-authorization.md` — why route middleware gates a
+  Livewire page exactly once, the revoked-permission test recipe (mount → seed →
+  revoke → assert both the 403 and the row), why Spatie's fail-closed handling of
+  an unknown permission name makes positive controls mandatory, and the
+  additions-only grep that proves no scope guard was removed.
 - `references/livewire-hydration.md` — what Livewire drops on every round-trip
   (`withCount`, eager loads, appended attributes), how to spot it by inspection, and
   the before/after probe template that exposes state that is correct on first render

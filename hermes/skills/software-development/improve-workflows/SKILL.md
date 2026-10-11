@@ -15,6 +15,7 @@ Operational patterns discovered during real improve skill executions. Supplement
 ## When to Use
 
 - Auditing a codebase and turning findings into a prioritized plan set, optionally registered as GitHub issues.
+- **Handed a filed plan to carry out** rather than review — see "Executing a Filed Plan".
 - Asked to give an opinion, verdict, or review on an existing plan, proposal, or tracking issue — including one written by another agent or a teammate.
 - Asked to re-review, re-verify, or triage a **batch of already-filed findings** ("review every open issue that doesn't have `ready`", "do these still hold?") — see "Re-verifying Filed Findings".
 - Asked to **replace** filed findings wholesale ("delete the issues without label X and file fresh ones", "rewrite these issues") — see "Replacing a Batch of Filed Findings" and `references/refile-batch.md`.
@@ -65,6 +66,27 @@ Recipes — scratch-file dumps, the upstream-drift commands, claim recounting (i
 - **When upstream already added the guard, file against the residual work only.** Name the commit, say what is left, and do not re-file the half that landed.
 - **Some findings are not changes to this repository.** Infrastructure and operational gaps (backup strategy, volume placement, host configuration) cannot be closed by a PR here. Route them to the maintainer with the evidence instead of putting them in the implementation queue.
 - **Fan out per pair, not per issue, and require re-derivation.** One subagent per two issues with the read-only rules inlined keeps the batch inside a sane round count; the prompt must say the issue text is untrusted and the agent must reproduce each claim itself.
+
+## Executing a Filed Plan
+
+Trigger: handed a filed plan issue to carry out, rather than to review. The plan's numbers are claims about **the commit it was written against**, which is rarely your HEAD.
+
+1. **Read the plan's base commit and diff it against yours before touching anything.** Line numbers, method signatures and even method *existence* are the perishable part: a plan naming `setFoo()` at line 531 against a base you are 40 commits behind may name a method that does not exist in your tree at all, and a patch anchored to `line N` silently lands in the wrong method.
+   ```bash
+   git rev-list --left-right --count <your-branch>...<plan-base-branch>
+   git merge-base --is-ancestor <plan-base-commit> HEAD && echo ancestor || echo diverged
+   git show <plan-base>:<path/to/file> | grep -n 'function <name>'   # does it exist there?
+   grep -n 'function <name>' <path/to/file>                          # does it exist here?
+   ```
+2. **Rebase or fast-forward onto the plan's base ref** rather than transcribing against a stale tree — a fast-forward is free, while applying the diff to a divergent branch means every hunk becomes a manual merge.
+3. **Anchor edits by signature, not by line number.** Locate the method by name and patch relative to its first statement; the line number is only a hint about where it *was*.
+4. **Re-derive every count in the plan as you go.** A plan that says "6 mutators" may have been counting a different set. Verify against the current tree and report the delta instead of padding the work to match the ticket.
+
+### Pitfalls
+
+- **A plan's line numbers silently outrank your tree if you do not check.** Applying `line 296` from a plan's base to a file that has since gained 30 lines patches the wrong statement, and the failure mode is a test that passes for the wrong reason. Every anchor gets re-located by signature first.
+- **A plan whose order contradicts a required skill gets reordered, and the deviation is recorded.** Implementation-steps-first plans are common in filed work; when the executing discipline requires the failing test first, write and watch the test fail, then implement. Same end state, and the tests earn their keep. Say so in the ledger/report rather than silently following the document.
+- **A plan's rationale can rot while its instruction stays correct.** A step may say "do not touch X because X has no try/catch" when X now does. Follow the instruction, but record the stale rationale and confirm the instruction is still safe under the current code — otherwise you inherit a decision nobody re-checked.
 
 ## Replacing a Batch of Filed Findings (retire-and-refile)
 

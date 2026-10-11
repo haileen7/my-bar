@@ -137,6 +137,31 @@ done. When the branch is already canonical plus local commits and `origin/<branc
 HEAD, there is nothing to commit or push for the sync itself — say so instead of
 manufacturing an empty merge commit.
 
+### A rejected push after syncing to canonical is usually a server-side commit
+
+Fast-forwarding the working branch to `canonical/<base>` does **not** make it a
+descendant of `origin/<branch>`. If anything landed on the server branch
+directly — a dependency bot, a web edit, a colleague — your local branch now has
+no fast-forward path left and the push is rejected as non-fast-forward.
+
+```bash
+git fetch origin <branch>
+git rev-list --left-right --count HEAD...origin/<branch>
+git log --oneline HEAD..origin/<branch>     # what you are "missing"
+```
+
+Read that log before deciding. When the incoming commits are mechanical
+(`chore(deps)`, lockfile bumps) and touch files your change does not, **merge
+them** — `git merge origin/<branch> --no-edit`. The merge resolves clean and
+the push becomes fast-forward; nobody's work is discarded and no force is
+needed.
+
+Reserve `--force` for the case where you are certain the server branch's
+history is disposable. Reaching for it here is how you silently delete a
+dependency bump or a teammate's commit. If the incoming commits overlap the
+files you changed, merge and resolve the conflict deliberately rather than
+forcing.
+
 ### Nested `.git` directories when copying content
 
 When `cp -r` (or similar) a directory that contains its own `.git` into another repo,

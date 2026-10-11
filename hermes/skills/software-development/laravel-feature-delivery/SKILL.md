@@ -187,6 +187,59 @@ record. Then commit, push to the current branch, and open the PR.
 
 ## Pitfalls
 
+- **A written plan's anchors describe a commit you are not standing on.** An
+  implementation plan (issue body, design doc, review note) is authored against
+  whatever commit its author had checked out. If your branch has drifted, its
+  line numbers are fiction and its method list can be incomplete — a method it
+  gates may not exist yet, and one it omits may have appeared. Resolve every
+  anchor against the working tree before the first edit:
+
+  ```bash
+  git log --oneline -1                       # what the plan claims to describe
+  git rev-list --left-right --count HEAD...upstream/<pr-base>
+  grep -n 'public function' <component>      # do the plan's methods all exist?
+  ```
+
+  When the PR base has moved ahead of your branch, fast-forward to it
+  (`git merge --ff-only upstream/<pr-base>`) *before* starting. Transcribing
+  against a stale tree produces a diff that silently skips a mutator and looks
+  correct. Where the plan and the tree genuinely disagree, the tree wins — and
+  the divergence is a decision to state in the report, not to quietly paper over.
+- **Running the suite can dirty a TRACKED env file with a real secret.** Some
+  projects ship `APP_KEY=` blank in a git-tracked `.env.testing` (correct — that
+  key encrypts sessions and signs the cookie MAC) and have the test command
+  generate a per-clone one into the working tree:
+  `php scripts/ensure-test-app-key.php && php artisan test`. So `composer test`
+  leaves `.env.testing` modified, and `git add -A` commits a master secret. The
+  guard that exists for it reads the **git index** (`git show ':'.$path`), not
+  the working tree, so it passes right up until the moment you stage. Restore it
+  after the run and stage explicit paths:
+  ```bash
+  composer test
+  git checkout .env.testing
+  git add <explicit paths...>        # never -A
+  git diff --cached --stat           # confirm nothing stray rode along
+  ```
+- **A Pest dataset row that is associative is spread as NAMED arguments**, not
+  positionally — and `class` is a reserved word, so it cannot be a parameter
+  name. `->with(['k' => ['component' => .., 'class' => ..]])` reaches the
+  closure as `function (string $component, ..., $class)` and dies with
+  "Unknown named parameter $component" / a parse error on `$class`. Wrap each row
+  in a one-element list so it arrives as one positional array:
+  ```php
+  dataset('lookups', ['semat' => [['component' => 'kargozini.semat', 'model' => Semat::class]]]);
+  test('…', function (array $lookup) { /* $lookup['model'] */ })->with('lookups');
+  ```
+- **Gating a Livewire mutator 403s scope tests whose actor holds no
+  permission.** Adding `$this->authorize('X')` as the first statement of a
+  mutator is correct and intended — but a pre-existing test that exercises that
+  mutator to assert *scope* now fails, because its fixture user was created
+  with no permissions at all and the 403 fires before the scope assertion.
+  Fix the FIXTURE (grant the permission the actor legitimately needs), never
+  weaken the new `authorize()`: scope comes from `accessibleUnitIds()` and never
+  consulted the permission, so granting it changes nothing the scope tests
+  assert. Confirm the intent by reading what the failing test asserts — if it is
+  about scope or validation, it is a fixture problem, not a gate problem.
 - **Nav entry forgotten.** Route + permission + tests all green, page unreachable
   from the UI. When asked "did you add a menu for the new page?", check the layout
   file — not just the route table.
