@@ -67,14 +67,32 @@ jobs:
       - name: 4. Install PHP 8.5 & Composer (Laravel + pgsql + redis)
         run: |
           sudo apt-get update
-          sudo apt-get install -y software-properties-common
-          sudo add-apt-repository -y ppa:ondrej/php
-          sudo apt-get update
-          sudo apt-get install -y \
-            php8.5 php8.5-cli php8.5-common php8.5-fpm \
-            php8.5-mbstring php8.5-xml php8.5-pgsql php8.5-curl php8.5-zip php8.5-bcmath php8.5-intl php8.5-gd \
-            php8.5-redis php8.5-tokenizer php8.5-fileinfo php8.5-ctype \
-            unzip
+          sudo apt-get install -y lsb-release ca-certificates curl
+          # PHP now comes straight from packages.sury.org (official install
+          # per its README): the Launchpad mirror (ppa:ondrej/php) answered
+          # 503 for over an hour on 2026-10-16 and killed every run in this
+          # step, and the PPA itself announces it is merging into sury.org.
+          # The keyring package installs the repo signing key.
+          sudo curl -sSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb
+          sudo dpkg -i /tmp/debsuryorg-archive-keyring.deb
+          sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+          php_ok=0
+          for attempt in 1 2 3; do
+            if sudo apt-get update && sudo apt-get install -y \
+              php8.5 php8.5-cli php8.5-common php8.5-fpm \
+              php8.5-mbstring php8.5-xml php8.5-pgsql php8.5-curl php8.5-zip php8.5-bcmath php8.5-intl php8.5-gd \
+              php8.5-redis php8.5-tokenizer php8.5-fileinfo php8.5-ctype \
+              unzip; then
+              php_ok=1
+              break
+            fi
+            echo "⚠️ PHP install attempt $attempt failed — retrying in 20s"
+            sleep 20
+          done
+          if [ "$php_ok" != 1 ]; then
+            echo '❌ PHP install failed after 3 attempts (packages.sury.org unreachable)'
+            exit 1
+          fi
           php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
           sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
