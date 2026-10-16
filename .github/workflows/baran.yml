@@ -160,6 +160,16 @@ jobs:
           cd /home/runner/h-dashboard
           composer update --no-interaction
           npm update
+          # APP_KEY: step 7 re-copies the tracked .env template over .env on every
+          # run, and that template ships APP_KEY blank since #953 — without a key
+          # the served app throws a 500 on every web request. Generate one for
+          # this run when .env has none (artisan setup passes without it, which
+          # is why setup looked healthy while the pages failed).
+          if ! grep -q '^APP_KEY=base64:' .env; then
+            php artisan key:generate --force
+            echo '🔑 APP_KEY generated for this run'
+          fi
+          php artisan optimize:clear
           php artisan optimize
           php artisan migrate:fresh --seed --force
           echo '✅ Database migrated and seeded'
