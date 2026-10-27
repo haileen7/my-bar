@@ -150,6 +150,35 @@ jobs:
           # Fetch latest origin/beta
           git fetch origin beta
 
+          # Sync this fork's beta from upstream beta BEFORE branching off it:
+          # REPO_ORIGIN is this account's own h-dashboard fork, whose beta
+          # usually lags asgarimehdi/h-dashboard, so branching from
+          # origin/beta booted machines on stale code. Mirror upstream/beta
+          # into the fork (plain push via the step-6 gh credential helper),
+          # then branch from the fresh origin/beta below, exactly as before.
+          UPSTREAM_URL="https://github.com/asgarimehdi/h-dashboard.git"
+          if [ "$REPO_ORIGIN" = "$UPSTREAM_URL" ]; then
+            echo "ℹ️ REPO_ORIGIN is upstream itself — fork-beta sync skipped"
+          else
+            git remote get-url upstream >/dev/null 2>&1 \
+              || git remote add upstream "$UPSTREAM_URL"
+            git fetch upstream beta
+            git checkout -B beta upstream/beta
+            if git push origin beta; then
+              echo "✅ Fork beta synced from upstream beta"
+            else
+              # The push failed (e.g. this token cannot write to the fork).
+              # Do NOT boot from the stale fork beta and do NOT abort the
+              # run either: repoint this clone's origin/beta view at the
+              # freshly fetched upstream/beta, so the checkout below still
+              # branches from current code for this run. The fork itself
+              # stays stale; the next run retries the sync. (This clone is
+              # ephemeral — nothing else reads its origin/beta ref.)
+              echo "⚠️⚠️⚠️ WARNING: pushing the synced beta to the fork FAILED — booting this run from the freshly fetched upstream/beta, NOT the stale fork beta"
+              git update-ref refs/remotes/origin/beta upstream/beta
+            fi
+          fi
+
           # Create / reset WF_NAME branch from origin/beta
           git checkout -B "${WF_NAME}" origin/beta
           echo "✅ Branch ${WF_NAME} created/reset from origin/beta"
@@ -225,6 +254,8 @@ jobs:
 
       - name: 11. Install 9router globally and create symlink
         run: |
+          # wreq-js is installed before 9router.
+          npm install -g wreq-js
           npm install -g 9router
           if [ -f ~/.npm-global/bin/9router ]; then
             sudo ln -sf ~/.npm-global/bin/9router /usr/local/bin/9router
