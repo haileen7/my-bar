@@ -517,6 +517,19 @@ jobs:
             echo '✅ Copied 9router data.sqlite → 9router/instances/${WF_NAME}.sqlite for backup'
           fi
 
+          # 2b. Scrub secrets from the synced state BEFORE staging: Hermes
+          # persists a GitHub PAT inside state.db, and GitHub push
+          # protection (GH013) rejects any push containing it - which
+          # silently killed every state backup (the step's fallback
+          # printed a false success). Replace PAT-shaped strings with
+          # equal-length placeholders so SQLite/JSON files stay valid and
+          # no secret is ever committed.
+          for _f in state.db kanban.db gateway_state.json channel_directory.json .skills_prompt_snapshot.json; do
+            if [ -f "$HDEST/$_f" ]; then
+              python3 -c 'import re,sys; p=sys.argv[1]; d=open(p,"rb").read(); n=re.sub(rb"(?:ghp|gho|ghu|ghs|ghr|ghf)_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}", lambda m: b"X"*len(m.group(0)), d); open(p,"wb").write(n); print("scrubbed secret(s) from "+p) if n!=d else None' "$HDEST/$_f" || echo "WARNING: scrub failed for $HDEST/$_f"
+            fi
+          done
+
           # 3. Commit & push if anything changed
           # Stage FIRST, then judge from the staged diff: plain `git diff`
           # is blind to untracked files, so checking before `git add` misses
