@@ -543,8 +543,12 @@ jobs:
             git commit -m "Sync hermes state & 9router data from baran instance"
             # Pull first in case another run pushed before us
             git pull --rebase origin "${{ github.ref_name }}" || true
-            git push origin "${{ github.ref_name }}" || echo '⚠️ Push failed — changes saved locally'
-            echo '✅ Hermes & 9router data synced to my-bar'
+            if git push origin "${{ github.ref_name }}"; then
+              echo '✅ Hermes & 9router data synced to my-bar'
+            else
+              echo '❌ Push failed — no backup commit landed'
+              exit 1
+            fi
           fi
 
       - name: 17. Tailscale Logout (cleanup on shutdown)
