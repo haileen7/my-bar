@@ -343,7 +343,7 @@ jobs:
             echo "TELEGRAM_ALLOWED_USERS=${TELEGRAM_ALLOWED_USERS}"
             echo "TELEGRAM_HOME_CHANNEL=${TELEGRAM_ALLOWED_USERS}"
             echo "GITHUB_TOKEN=${GH_TOKEN}"
-
+            echo "HERMES_PEER_BARAN_KEY=${HERMES_API_KEY}"
           } > ~/.hermes/.env
           chmod 600 ~/.hermes/.env
           echo '✅ Wrote ~/.hermes/.env from secrets'
