@@ -165,3 +165,6 @@ session_reset:
   at_hour: 5
   idle_minutes: 1440
   mode: none
+bot_peers:
+  bar:
+    url: http://bar:8642
