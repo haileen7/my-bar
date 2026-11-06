@@ -1,4 +1,4 @@
-# Managed by RemoteHermes — template v2 (regenerated on Update; manual edits are overwritten)
+# Managed by RemoteHermes — template v3 (regenerated on Update; manual edits are overwritten)
 name: bar
 
 on:
@@ -264,21 +264,35 @@ jobs:
             echo '⚠️ 9router binary not found after installation'
           fi
 
-      - name: 12. Restore 9router db backup & start hidden (tray)
+      - name: 12. Fetch 9router db from keys repo & start hidden (tray)
+        env:
+          GH_TOKEN: ${{ secrets.MY_PAT }}
         run: |
           export INITIAL_PASSWORD="${{ secrets.RUNNER_PASSWORD }}"
           # Make sure the data dir exists
           mkdir -p ~/.9router/db
-          BACKUP_FILE="${GITHUB_WORKSPACE:-.}/9router/instances/${WF_NAME}.sqlite"
-          # Restore this instance's backed-up state from the repo
-          # (committed in 9router/instances/<wf>.sqlite — one db per
-          # instance now that syd/ayl/naz share this repo)
-          if [ -f "$BACKUP_FILE" ]; then
-            cp "$BACKUP_FILE" ~/.9router/db/data.sqlite
-            echo '✅ Restored 9router data.sqlite from repo backup'
-          else
-            echo '⚠️ 9router backup for ${WF_NAME} not found in repo — starting fresh'
+          # The 9router db lives in the private keys repo
+          # (haileen7/my-9router, file 9router.sqlite at root) — one
+          # shared db for this account. It is fetched fresh on every
+          # boot; nothing is read from 9router/instances/<wf>.sqlite
+          # any more, and the db is never written back to this hub
+          # repo (keys must not land in its history). Fail fast if
+          # the keys repo or the file is unreachable — a silent
+          # fresh start would boot a keyless router, and Hermes
+          # could not log into it.
+          KEYS_TMP="$(mktemp -d)"
+          if ! git clone --depth 1 "https://x-access-token:${GH_TOKEN}@github.com/haileen7/my-9router.git" "$KEYS_TMP"; then
+            echo '::error::could not clone haileen7/my-9router — check the repo exists and MY_PAT can read it'
+            exit 1
           fi
+          if [ -f "$KEYS_TMP/9router.sqlite" ]; then
+            cp "$KEYS_TMP/9router.sqlite" ~/.9router/db/data.sqlite
+            echo '✅ Restored 9router data.sqlite from keys repo'
+          else
+            echo '::error::9router.sqlite not found in haileen7/my-9router'
+            exit 1
+          fi
+          rm -rf "$KEYS_TMP"
           # Start 9router hidden in the background (tray mode) on the default port 20128.
           # --tray is the same "hide to background" option used interactively.
           nohup 9router --tray --skip-update -p 20128 > /tmp/9router.log 2>&1 &
@@ -543,6 +557,77 @@ jobs:
               exit 1
             fi
           fi
+
+      - name: 16b. Back up 9router db to keys repo (on shutdown)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.MY_PAT }}
+        run: |
+          # Back up the live 9router db into the private keys repo
+          # (haileen7/my-9router, file 9router.sqlite) so keys/combos
+          # added or changed during this run survive shutdown. Runs
+          # on every shutdown (cancel/timeout included) via
+          # if: always(). 9router is stopped first so SQLite
+          # checkpoints its WAL into data.sqlite; the copy is
+          # integrity-checked before it is pushed, and a failed
+          # backup is a loud warning, not a failed run. If two
+          # instances shut down together they race on the same file —
+          # last writer wins; both booted from the same file, so
+          # only usage-history rows can differ. If step 12 never
+          # restored a db (fetch failed), no file exists here and
+          # nothing is backed up — an empty db can never overwrite
+          # the keys repo.
+          pkill -f "9router --tray --skip-update" || true
+          for _i in $(seq 1 10); do pgrep -f "9router --tray" >/dev/null || break; sleep 1; done
+          DB_SRC="$HOME/.9router/db/data.sqlite"
+          if [ ! -f "$DB_SRC" ]; then
+            echo '::warning::no 9router db found — nothing to back up'
+            exit 0
+          fi
+          # Merge any WAL content still on disk (no-op if 9router
+          # already flushed it on exit) and copy to a temp file.
+          if command -v sqlite3 >/dev/null 2>&1; then
+            sqlite3 "$DB_SRC" "PRAGMA wal_checkpoint(TRUNCATE);" 2>/dev/null || true
+          fi
+          TMP_DIR="$(mktemp -d)"
+          TMP_DB="$TMP_DIR/9router.sqlite"
+          cp "$DB_SRC" "$TMP_DB" || { echo '::warning::could not copy the 9router db — backup skipped'; exit 0; }
+          if command -v sqlite3 >/dev/null 2>&1; then
+            if ! sqlite3 "$TMP_DB" "PRAGMA integrity_check;" 2>/dev/null | grep -qx "ok"; then
+              echo '::warning::backed-up 9router db failed integrity_check — NOT pushed'
+              exit 0
+            fi
+          fi
+          # Push with a bounded retry: a second machine shutting down
+          # at the same time can win the race on the same file.
+          for attempt in 1 2 3; do
+            KEYS_TMP="$(mktemp -d)"
+            if git clone --depth 1 --branch main "https://x-access-token:${GH_TOKEN}@github.com/haileen7/my-9router.git" "$KEYS_TMP"; then
+              cp "$TMP_DB" "$KEYS_TMP/9router.sqlite" || continue
+              cd "$KEYS_TMP" || continue
+              git add 9router.sqlite || continue
+              if git diff --cached --quiet; then
+                echo '✅ 9router db unchanged — nothing to back up'
+                exit 0
+              fi
+              if git -c user.name="haileen7" -c user.email="haileen7@users.noreply.github.com" commit -m "Backup 9router db from ${WF_NAME} (run ${GITHUB_RUN_ID})"; then
+                if git push origin main; then
+                  echo "✅ 9router db backed up to haileen7/my-9router (attempt $attempt)"
+                  exit 0
+                fi
+                echo "⚠️ push failed (attempt $attempt) — retrying"
+              else
+                echo "⚠️ commit failed (attempt $attempt) — retrying"
+              fi
+              cd "$GITHUB_WORKSPACE" || true
+            else
+              echo "⚠️ clone failed (attempt $attempt) — retrying"
+            fi
+            rm -rf "$KEYS_TMP"
+            sleep 10
+          done
+          echo '::warning::9router db backup failed after 3 attempts — the live db died with this runner'
+          exit 0
 
       - name: 17. Tailscale Logout (cleanup on shutdown)
         if: always()
