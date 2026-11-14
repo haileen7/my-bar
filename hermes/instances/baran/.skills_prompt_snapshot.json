@@ -1,0 +1,1263 @@
+{
+  "version": 5,
+  "manifest": {
+    "note-taking/DESCRIPTION.md": [
+      1794600048574734081,
+      146,
+      10003660,
+      1794600048574734081,
+      "da7083e903d53abdf96d06c456959494"
+    ],
+    "note-taking/obsidian/SKILL.md": [
+      1794600048574821083,
+      3092,
+      10003659,
+      1794600048574821083,
+      "90dd7d5e33ddd6746fdb973b21e6485e"
+    ],
+    "productivity/DESCRIPTION.md": [
+      1794600048574910279,
+      114,
+      10003661,
+      1794600048574910279,
+      "7caf452e2390224547d187f56a51dfcd"
+    ],
+    "productivity/google-workspace/SKILL.md": [
+      1794600048575085947,
+      14241,
+      10003583,
+      1794600048575085947,
+      "32ece0e05f6ed76b19783ec8b3f91925"
+    ],
+    "productivity/teams-meeting-pipeline/SKILL.md": [
+      1794600048579961195,
+      7206,
+      10003585,
+      1794600048579961195,
+      "3a8da914d46d7429ab9637140f2fb323"
+    ],
+    "productivity/weekly-review-planning/SKILL.md": [
+      1794600048580047997,
+      3955,
+      10003587,
+      1794600048580047997,
+      "430e548f8f95bd83f3366fcfe2708452"
+    ],
+    "productivity/document-to-action-items/SKILL.md": [
+      1794600048574995108,
+      3913,
+      10003589,
+      1794600048574995108,
+      "aed140e0f3db49b334eb4361d18fab3e"
+    ],
+    "productivity/microsoft-office/SKILL.md": [
+      1794600048576048554,
+      8073,
+      10003618,
+      1794600048576048554,
+      "9bccd32cd61dd982fd13700f71b1cd4e"
+    ],
+    "productivity/pdf/SKILL.md": [
+      1794600048578331133,
+      15308,
+      10003645,
+      1794600048578331133,
+      "1e050a7169a74ce6e5b4ffa56ced11d4"
+    ],
+    "productivity/maps/SKILL.md": [
+      1794600048575646393,
+      6705,
+      10003652,
+      1794600048575646393,
+      "065b86a0d3845d380f500f6795825b2a"
+    ],
+    "productivity/product-price-monitor/SKILL.md": [
+      1794600048579869414,
+      4396,
+      10003654,
+      1794600048579869414,
+      "8ff58e988ddcd1e4396f57f0448ef197"
+    ],
+    "productivity/meeting-action-items/SKILL.md": [
+      1794600048575867616,
+      3798,
+      10003656,
+      1794600048575867616,
+      "51406f94bc25b9f4255b1c08612236b2"
+    ],
+    "autonomous-ai-agents/DESCRIPTION.md": [
+      1794600048560358944,
+      211,
+      10003662,
+      1794600048560358944,
+      "c60a15744ecd672feb6fcce626191da4"
+    ],
+    "autonomous-ai-agents/hermes-agent/SKILL.md": [
+      1794599975623052985,
+      15952,
+      10007755,
+      1794600074788962789,
+      "f2c7ed73e7751efc654649add7bfd7f4"
+    ],
+    "autonomous-ai-agents/codex/SKILL.md": [
+      1794600048560560621,
+      5852,
+      10003568,
+      1794600048560560621,
+      "6616d33f09f2291ed866a74c51684074"
+    ],
+    "autonomous-ai-agents/claude-code/SKILL.md": [
+      1794600048560434866,
+      35175,
+      10003570,
+      1794600048560434866,
+      "f28ae039424e372a07ab6ea484853579"
+    ],
+    "autonomous-ai-agents/computer-use/SKILL.md": [
+      1794600048560639959,
+      17989,
+      10003572,
+      1794600048560639959,
+      "a2e6fb37f6a6ef3c0dd7e1ffc2a91c53"
+    ],
+    "creative/DESCRIPTION.md": [
+      1794600048562148875,
+      116,
+      10003663,
+      1794600048562148875,
+      "46e64cc16943251684fdc5126fddf033"
+    ],
+    "creative/architecture-diagram/SKILL.md": [
+      1794600048562221400,
+      5830,
+      10003369,
+      1794600048562221400,
+      "580c2fe8a1e76857dff79af21b466e62"
+    ],
+    "creative/ascii-video/SKILL.md": [
+      1794600048562479632,
+      15011,
+      10003382,
+      1794600048562479632,
+      "cb017f3ca2f771147a41430c5721560c"
+    ],
+    "creative/humanizer/SKILL.md": [
+      1794600048566369040,
+      34463,
+      10003385,
+      1794600048566369040,
+      "d9f8905ea5969ba66305cda0dfa1f87c"
+    ],
+    "creative/baoyu-infographic/SKILL.md": [
+      1794600048563243968,
+      10490,
+      10003436,
+      1794600048563243968,
+      "6da76db092943a156bcc61dd854383e1"
+    ],
+    "creative/manim-video/SKILL.md": [
+      1794600048566586636,
+      12150,
+      10003456,
+      1794600048566586636,
+      "f2af4a334697dc8c74da4c1ea14adb62"
+    ],
+    "creative/songwriting-and-ai-music/SKILL.md": [
+      1794600048573763530,
+      10963,
+      10003459,
+      1794600048573763530,
+      "01af829788c9bb87b71544d2ff3411e5"
+    ],
+    "creative/p5js/SKILL.md": [
+      1794600048567944530,
+      27534,
+      10003477,
+      1794600048567944530,
+      "9fbb0f962c7608d35a14ffab5f067644"
+    ],
+    "creative/claude-design/SKILL.md": [
+      1794600048566226214,
+      25204,
+      10003482,
+      1794600048566226214,
+      "1352559bea8ac5b0623da83df41742b3"
+    ],
+    "creative/popular-web-designs/SKILL.md": [
+      1794600048569266497,
+      9869,
+      10003484,
+      1794600048569266497,
+      "d1273c5836c9c6becaddab897b514fe9"
+    ],
+    "research/DESCRIPTION.md": [
+      1794600048580133817,
+      179,
+      10003664,
+      1794600048580133817,
+      "e7c50d312d69f35ac7fae94423f1974d"
+    ],
+    "research/grounded-citations/SKILL.md": [
+      1794600048580508947,
+      12644,
+      10003360,
+      1794600048580508947,
+      "03a41bc3b06db1139382ebc259282f19"
+    ],
+    "research/arxiv/SKILL.md": [
+      1794600048580222122,
+      10061,
+      10003364,
+      1794600048580222122,
+      "a007079c25d720cc360aa3bcb64c5f71"
+    ],
+    "research/competitor-news-monitor/SKILL.md": [
+      1794600048580394915,
+      4619,
+      10003366,
+      1794600048580394915,
+      "81445419176c38884a6f948b0a899940"
+    ],
+    "devops/sdlc-review/SKILL.md": [
+      1794600048573856052,
+      9073,
+      10003351,
+      1794600048573856052,
+      "4f6bbdf50453f1211664da81faa23dad"
+    ],
+    "media/DESCRIPTION.md": [
+      1794600048574348201,
+      98,
+      10003665,
+      1794600048574348201,
+      "cdca050677f7586f582f2809096afa56"
+    ],
+    "media/youtube-content/SKILL.md": [
+      1794600048574434672,
+      4377,
+      10003348,
+      1794600048574434672,
+      "4ef8e7097f3f8066e17337cb83dcd078"
+    ],
+    "software-development/dogfood/SKILL.md": [
+      1794600048581212280,
+      8652,
+      10003306,
+      1794600048581212280,
+      "66ded2c63a171e681f3a3d269b62d36a"
+    ],
+    "software-development/test-driven-development/SKILL.md": [
+      1794600048583166366,
+      10300,
+      10003310,
+      1794600048583166366,
+      "c1aceeec8301d9ee8ed3eec57f42e6cd"
+    ],
+    "software-development/systematic-debugging/SKILL.md": [
+      1794600048583069265,
+      14059,
+      10003312,
+      1794600048583069265,
+      "be298aab5cce9739a14765d1d3dc4f9d"
+    ],
+    "software-development/simplify-code/SKILL.md": [
+      1794600048582880012,
+      14696,
+      10003314,
+      1794600048582880012,
+      "94643c4d8790029954eaa73f84dea1fa"
+    ],
+    "software-development/spike/SKILL.md": [
+      1794600048582976091,
+      8723,
+      10003316,
+      1794600048582976091,
+      "5d62c1005889b74c72d0da32953d74f3"
+    ],
+    "software-development/github/SKILL.md": [
+      1794600048581499897,
+      2446,
+      10003332,
+      1794600048581499897,
+      "0369eea527f7241672f33a41b68a2351"
+    ],
+    "software-development/requesting-code-review/SKILL.md": [
+      1794600048582791297,
+      8781,
+      10003339,
+      1794600048582791297,
+      "76d40be267e82dc1257114a5de3eedab"
+    ],
+    "software-development/codebase-inspection/SKILL.md": [
+      1794600048581121591,
+      3612,
+      10003341,
+      1794600048581121591,
+      "a9a23052862d1954b5231ad8c21a664f"
+    ],
+    "apple/DESCRIPTION.md": [
+      1794600048559997019,
+      137,
+      10003666,
+      1794600048559997019,
+      "a0c16363f096c201d06a67ab424b3d9d"
+    ],
+    "apple/imessage/SKILL.md": [
+      1794600048560286750,
+      2442,
+      10003295,
+      1794600048560286750,
+      "7809fd098a78a6588535bb57cafb5d73"
+    ],
+    "apple/apple-reminders/SKILL.md": [
+      1794600048560147590,
+      3606,
+      10003297,
+      1794600048560147590,
+      "6bf59594bfe7e4224d4136404a78f6de"
+    ],
+    "apple/apple-notes/SKILL.md": [
+      1794600048560073331,
+      2394,
+      10003299,
+      1794600048560073331,
+      "3a5d206019095e0b633a53f575526401"
+    ],
+    "apple/findmy/SKILL.md": [
+      1794600048560217360,
+      3823,
+      10003301,
+      1794600048560217360,
+      "bee95f1a66807ae46c23be3bffc485d8"
+    ],
+    "social-media/DESCRIPTION.md": [
+      1794600048580929042,
+      151,
+      10003667,
+      1794600048580929042,
+      "d54f750ff827117e4b40c9f76d64fb00"
+    ],
+    "social-media/xurl/SKILL.md": [
+      1794600048581007037,
+      16345,
+      10003292,
+      1794600048581007037,
+      "2312530a9deef9748cec23b384f47f59"
+    ],
+    "web/DESCRIPTION.md": [
+      1794600048583256645,
+      137,
+      10003668,
+      1794600048583256645,
+      "69c9c9f9aef6a0719d0d71082120a8b1"
+    ],
+    "web/blocked-page-recovery/SKILL.md": [
+      1794600048583331274,
+      5175,
+      10003289,
+      1794600048583331274,
+      "5cf72239b3e644d7e83ee973b3694609"
+    ],
+    "email/DESCRIPTION.md": [
+      1794600048573938777,
+      101,
+      10003669,
+      1794600048573938777,
+      "4be60e6df2eb4b9cba8ddad557e41057"
+    ],
+    "email/himalaya/SKILL.md": [
+      1794600048574126076,
+      7272,
+      10003219,
+      1794600048574126076,
+      "5bc714c5717f302f73c013e7cf77ce44"
+    ],
+    "email/email-inbox-triage/SKILL.md": [
+      1794600048574041228,
+      5447,
+      10003221,
+      1794600048574041228,
+      "b286da3f85c70cefde0c16ba5ae5d2d4"
+    ]
+  },
+  "skills": [
+    {
+      "skill_name": "apple-notes",
+      "category": "apple",
+      "frontmatter_name": "apple-notes",
+      "rel": "apple/apple-notes/SKILL.md",
+      "description": "Manage Apple Notes via memo CLI: create, search, edit.",
+      "platforms": [
+        "macos"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "apple-reminders",
+      "category": "apple",
+      "frontmatter_name": "apple-reminders",
+      "rel": "apple/apple-reminders/SKILL.md",
+      "description": "Apple Reminders via remindctl: add, list, complete.",
+      "platforms": [
+        "macos"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "findmy",
+      "category": "apple",
+      "frontmatter_name": "findmy",
+      "rel": "apple/findmy/SKILL.md",
+      "description": "Track Apple devices/AirTags via FindMy.app on macOS.",
+      "platforms": [
+        "macos"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "imessage",
+      "category": "apple",
+      "frontmatter_name": "imessage",
+      "rel": "apple/imessage/SKILL.md",
+      "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.",
+      "platforms": [
+        "macos"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "claude-code",
+      "category": "autonomous-ai-agents",
+      "frontmatter_name": "claude-code",
+      "rel": "autonomous-ai-agents/claude-code/SKILL.md",
+      "description": "Delegate coding to Claude Code CLI (features, PRs).",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "codex",
+      "category": "autonomous-ai-agents",
+      "frontmatter_name": "codex",
+      "rel": "autonomous-ai-agents/codex/SKILL.md",
+      "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "computer-use",
+      "category": "autonomous-ai-agents",
+      "frontmatter_name": "computer-use",
+      "rel": "autonomous-ai-agents/computer-use/SKILL.md",
+      "description": "Drive the desktop background-first; escalate on signal.",
+      "platforms": [
+        "macos",
+        "windows",
+        "linux"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "hermes-agent",
+      "category": "autonomous-ai-agents",
+      "frontmatter_name": "hermes-agent",
+      "rel": "autonomous-ai-agents/hermes-agent/SKILL.md",
+      "description": "Use, configure, theme, extend, and orchestrate Hermes Agent.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "architecture-diagram",
+      "category": "creative",
+      "frontmatter_name": "architecture-diagram",
+      "rel": "creative/architecture-diagram/SKILL.md",
+      "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "ascii-video",
+      "category": "creative",
+      "frontmatter_name": "ascii-video",
+      "rel": "creative/ascii-video/SKILL.md",
+      "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "baoyu-infographic",
+      "category": "creative",
+      "frontmatter_name": "baoyu-infographic",
+      "rel": "creative/baoyu-infographic/SKILL.md",
+      "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "claude-design",
+      "category": "creative",
+      "frontmatter_name": "claude-design",
+      "rel": "creative/claude-design/SKILL.md",
+      "description": "Design one-off HTML artifacts (landing, deck, prototype).",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "humanizer",
+      "category": "creative",
+      "frontmatter_name": "humanizer",
+      "rel": "creative/humanizer/SKILL.md",
+      "description": "Humanize text: strip AI-isms and add real voice.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "manim-video",
+      "category": "creative",
+      "frontmatter_name": "manim-video",
+      "rel": "creative/manim-video/SKILL.md",
+      "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "p5js",
+      "category": "creative",
+      "frontmatter_name": "p5js",
+      "rel": "creative/p5js/SKILL.md",
+      "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "popular-web-designs",
+      "category": "creative",
+      "frontmatter_name": "popular-web-designs",
+      "rel": "creative/popular-web-designs/SKILL.md",
+      "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "songwriting-and-ai-music",
+      "category": "creative",
+      "frontmatter_name": "songwriting-and-ai-music",
+      "rel": "creative/songwriting-and-ai-music/SKILL.md",
+      "description": "Songwriting craft and Suno AI music prompts.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "sdlc-review",
+      "category": "devops",
+      "frontmatter_name": "sdlc-review",
+      "rel": "devops/sdlc-review/SKILL.md",
+      "description": "Review Kanban handoffs and route verified outcomes.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [
+          "kanban"
+        ],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "email-inbox-triage",
+      "category": "email",
+      "frontmatter_name": "email-inbox-triage",
+      "rel": "email/email-inbox-triage/SKILL.md",
+      "description": "Triage an inbox: prioritize threads, draft replies safely.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "himalaya",
+      "category": "email",
+      "frontmatter_name": "himalaya",
+      "rel": "email/himalaya/SKILL.md",
+      "description": "Himalaya CLI: IMAP/SMTP email from terminal.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "youtube-content",
+      "category": "media",
+      "frontmatter_name": "youtube-content",
+      "rel": "media/youtube-content/SKILL.md",
+      "description": "YouTube transcripts to summaries, threads, blogs.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "obsidian",
+      "category": "note-taking",
+      "frontmatter_name": "obsidian",
+      "rel": "note-taking/obsidian/SKILL.md",
+      "description": "Read, search, create, and edit notes in the Obsidian vault.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "document-to-action-items",
+      "category": "productivity",
+      "frontmatter_name": "document-to-action-items",
+      "rel": "productivity/document-to-action-items/SKILL.md",
+      "description": "Extract cited obligations, deadlines, tasks from documents.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "google-workspace",
+      "category": "productivity",
+      "frontmatter_name": "google-workspace",
+      "rel": "productivity/google-workspace/SKILL.md",
+      "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "maps",
+      "category": "productivity",
+      "frontmatter_name": "maps",
+      "rel": "productivity/maps/SKILL.md",
+      "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [
+          "terminal"
+        ],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "meeting-action-items",
+      "category": "productivity",
+      "frontmatter_name": "meeting-action-items",
+      "rel": "productivity/meeting-action-items/SKILL.md",
+      "description": "Turn meeting notes into cited decisions, owners, tickets.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "microsoft-office",
+      "category": "productivity",
+      "frontmatter_name": "microsoft-office",
+      "rel": "productivity/microsoft-office/SKILL.md",
+      "description": "Create, read, and edit Word, PowerPoint, and Excel files.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "pdf",
+      "category": "productivity",
+      "frontmatter_name": "pdf",
+      "rel": "productivity/pdf/SKILL.md",
+      "description": "PDF files: create, read, merge, fill, OCR, edit text.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "product-price-monitor",
+      "category": "productivity",
+      "frontmatter_name": "product-price-monitor",
+      "rel": "productivity/product-price-monitor/SKILL.md",
+      "description": "Watch product, flight, or listing prices; alert on target.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "teams-meeting-pipeline",
+      "category": "productivity",
+      "frontmatter_name": "teams-meeting-pipeline",
+      "rel": "productivity/teams-meeting-pipeline/SKILL.md",
+      "description": "Teams meeting summaries, job replay, Graph subscriptions.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": [
+          "teams",
+          "cron"
+        ]
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "weekly-review-planning",
+      "category": "productivity",
+      "frontmatter_name": "weekly-review-planning",
+      "rel": "productivity/weekly-review-planning/SKILL.md",
+      "description": "Weekly reset: commitments, stalled work, next-week plan.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "arxiv",
+      "category": "research",
+      "frontmatter_name": "arxiv",
+      "rel": "research/arxiv/SKILL.md",
+      "description": "Search arXiv papers by keyword, author, category, or ID.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "competitor-news-monitor",
+      "category": "research",
+      "frontmatter_name": "competitor-news-monitor",
+      "rel": "research/competitor-news-monitor/SKILL.md",
+      "description": "Watch named companies for material news; cited digests.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "grounded-citations",
+      "category": "research",
+      "frontmatter_name": "grounded-citations",
+      "rel": "research/grounded-citations/SKILL.md",
+      "description": "Ground answers and documents in cited, verifiable sources.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "xurl",
+      "category": "social-media",
+      "frontmatter_name": "xurl",
+      "rel": "social-media/xurl/SKILL.md",
+      "description": "X/Twitter via xurl CLI: raw post search, posting, DM, media.",
+      "platforms": [
+        "linux",
+        "macos"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "codebase-inspection",
+      "category": "software-development",
+      "frontmatter_name": "codebase-inspection",
+      "rel": "software-development/codebase-inspection/SKILL.md",
+      "description": "Inspect codebases w/ pygount: LOC, languages, ratios.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "dogfood",
+      "category": "software-development",
+      "frontmatter_name": "dogfood",
+      "rel": "software-development/dogfood/SKILL.md",
+      "description": "Exploratory QA of web apps: find bugs, evidence, reports.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "github",
+      "category": "software-development",
+      "frontmatter_name": "github",
+      "rel": "software-development/github/SKILL.md",
+      "description": "GitHub via gh CLI: PRs, issues, reviews, repos, auth.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "requesting-code-review",
+      "category": "software-development",
+      "frontmatter_name": "requesting-code-review",
+      "rel": "software-development/requesting-code-review/SKILL.md",
+      "description": "Pre-commit review: security scan, quality gates, auto-fix.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "simplify-code",
+      "category": "software-development",
+      "frontmatter_name": "simplify-code",
+      "rel": "software-development/simplify-code/SKILL.md",
+      "description": "Parallel 4-agent cleanup of recent code changes.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "spike",
+      "category": "software-development",
+      "frontmatter_name": "spike",
+      "rel": "software-development/spike/SKILL.md",
+      "description": "Throwaway experiments to validate an idea before build.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "systematic-debugging",
+      "category": "software-development",
+      "frontmatter_name": "systematic-debugging",
+      "rel": "software-development/systematic-debugging/SKILL.md",
+      "description": "4-phase root cause debugging: understand bugs before fixing.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "test-driven-development",
+      "category": "software-development",
+      "frontmatter_name": "test-driven-development",
+      "rel": "software-development/test-driven-development/SKILL.md",
+      "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "blocked-page-recovery",
+      "category": "web",
+      "frontmatter_name": "blocked-page-recovery",
+      "rel": "web/blocked-page-recovery/SKILL.md",
+      "description": "Use when a fetch fails: 403/429, paywall, WAF, bot wall.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    }
+  ]
+}
