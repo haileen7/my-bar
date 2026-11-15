@@ -1,0 +1,50 @@
+{
+  "dogfood": {
+    "archived_at": null,
+    "created_at": "2026-11-15T15:53:56.005340+00:00",
+    "created_by": null,
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": "2026-11-15T15:53:56.006088+00:00",
+    "last_viewed_at": "2026-11-15T15:53:56.005356+00:00",
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
+  "superpowers:systematic-debugging": {
+    "archived_at": null,
+    "created_at": "2026-11-15T15:53:49.755763+00:00",
+    "created_by": null,
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": "2026-11-15T17:28:30.999567+00:00",
+    "last_viewed_at": "2026-11-15T17:28:30.998898+00:00",
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 4,
+    "view_count": 4
+  },
+  "systematic-debugging": {
+    "archived_at": null,
+    "created_at": "2026-11-15T17:28:09.443879+00:00",
+    "created_by": null,
+    "first_seen_at": null,
+    "last_patched_at": "2026-11-15T17:28:09.443889+00:00",
+    "last_reused_patch_generation": 0,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 1,
+    "patch_generation": 1,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  }
+}
